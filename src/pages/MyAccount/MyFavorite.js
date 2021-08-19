@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import useFirestore from '../../hooks/useFirestore';
-import { auth, projectFirestore } from '/react/scheduler/client/src/firebase';
+import { auth, projectFirestore } from '../../firebase';
 import '../box.css'
 import { Card } from 'react-bootstrap'
 import ReactPlayer from 'react-player';

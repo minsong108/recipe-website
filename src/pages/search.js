@@ -5,8 +5,6 @@ import YoutubeList from './youtube/YoutubeList';
 import MealPlanList from './recipe/MealPlanList';
 import './search.css';
 
-const APIKey = "AIzaSyDN9tQiQrtjNGTIus6T6BtKNJQYD6wlg2w";
-
 const Search = () => {
 
     const [menuData, setMenuData] = useState(null);
@@ -71,7 +69,7 @@ const Search = () => {
         setMenuData(null);
         setMealPlan(null);
 
-        YTSearch({ key: APIKey, term: ytVideoInput}, videos => {
+        YTSearch({ key: "AIzaSyDN9tQiQrtjNGTIus6T6BtKNJQYD6wlg2w", term: ytVideoInput}, videos => {
              console.log(videos);
              setVideoData(videos);
         })

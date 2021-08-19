@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import useFirestore from '../../hooks/useFirestore';
-import { auth } from '/react/scheduler/client/src/firebase';
-import { projectFirestore } from '../../firebase';
+import { auth } from '../../firebase';
 import '../box.css'
 import { Card } from 'react-bootstrap'
 

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import useFirestore from '../../hooks/useFirestore';
-import { auth } from '/react/scheduler/client/src/firebase';
-import { projectFirestore } from '../../firebase';
+import { auth, projectFirestore } from '../../firebase';
 import '../box.css'
 import { Card } from 'react-bootstrap'
 
 const MyPost = () => {
 
+    const nullmsg = "You don't have any post to display";
     const user = auth.currentUser;
     const { docs } = useFirestore(auth.currentUser.uid);
 
@@ -100,49 +100,50 @@ const MyPost = () => {
         <div>
             <h1 style={styles.title}>Your dishes</h1>
             <div className="grid" style={styles.card}>
-                { docs && docs.map(doc => (
+                { docs.length == 0 ? <h2 style={styles.message}>{nullmsg}</h2> : 
+                    docs && docs.map(doc => (
+                        <Card style={{ width: '18rem' }} key={doc.id} className="box">
+                        <Card.Img variant="top" src={doc.url} />
+                        <Card.Body>
 
-                    <Card style={{ width: '18rem' }} key={doc.id} className="box">
-                    <Card.Img variant="top" src={doc.url} />
-                    <Card.Body>
+                            <Card.Title>
+                                <input
+                                    type="text"
+                                    defaultValue={doc.title}
+                                    placeholder="Enter Title"
+                                    onChange={(e) => {
+                                        if (e == null) {
+                                            setNewTitle(doc.title)
+                                        }
+                                        else {
+                                            setNewTitle(e.target.value)
+                                        }
+                                    }}
+                                />
+                            </Card.Title>
 
-                        <Card.Title>
-                            <input
-                                type="text"
-                                defaultValue={doc.title}
-                                placeholder="Enter Title"
-                                onChange={(e) => {
-                                    if (e == null) {
-                                        setNewTitle(doc.title)
-                                    }
-                                    else {
-                                        setNewTitle(e.target.value)
-                                    }
-                                }}
-                            />
-                        </Card.Title>
-
-                        <Card.Text>
-                            <input
-                                type="text"
-                                defaultValue={doc.caption}
-                                placeholder="Enter Caption"
-                                onChange={(e) => {
-                                    if (e == null) {
-                                        setNewCaption(doc.caption)
-                                    }
-                                    else {
-                                        setNewCaption(e.target.value)
-                                    }
-                                }}
-                            />
-                        </Card.Text>
-                         
-                        <button style={styles.cardButton} onClick={() => updatePost(doc.id)}>Update</button>
-                        <button style={styles.cardButton} onClick={() => deletePost(doc.id)}>Delete</button>
-                    </Card.Body>
-                    </Card>
-                ))}
+                            <Card.Text>
+                                <input
+                                    type="text"
+                                    defaultValue={doc.caption}
+                                    placeholder="Enter Caption"
+                                    onChange={(e) => {
+                                        if (e == null) {
+                                            setNewCaption(doc.caption)
+                                        }
+                                        else {
+                                            setNewCaption(e.target.value)
+                                        }
+                                    }}
+                                />
+                            </Card.Text>
+                            
+                            <button style={styles.cardButton} onClick={() => updatePost(doc.id)}>Update</button>
+                            <button style={styles.cardButton} onClick={() => deletePost(doc.id)}>Delete</button>
+                        </Card.Body>
+                        </Card>
+                    ))
+                }
 
             </div>
         </div>
@@ -168,6 +169,17 @@ const styles = {
         alignItems: "center",
         display: "flex",
         fontFamily: "sans-serif"
+    },
+
+    message: {
+        color: '#376C8A',
+        width: 5000,
+        fontFamily: "sans-serif",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        marginBottom: 10,
+        fontSize: 30
     },
 
     infoLabel: {

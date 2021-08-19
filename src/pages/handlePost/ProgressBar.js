@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import  useStorage from '/react/scheduler/client/src/hooks/useStorage';
-import '/react/scheduler/client/src/index.css'
+import '../../index.css';
 import { projectStorage, projectFirestore, timeStamp } from '../../firebase';
 
 import { auth } from '../../firebase';

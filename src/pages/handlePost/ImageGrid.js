@@ -1,9 +1,8 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import useFirestore from 'C:/react/scheduler/client/src/hooks/useFirestore';
-import '/react/scheduler/client/src/pages/box.css';
+import useFirestore from '../../hooks/useFirestore';
+import '../../pages/box.css';
 import { projectFirestore } from '../../firebase'
-import '/react/scheduler/client/src/pages/box.css'
 
 import Image from './Image'
 

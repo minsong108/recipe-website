@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { projectStorage } from '/react/scheduler/client/src/firebase'
+import { projectStorage } from '../firebase'
 
 const useStorage = (file) => {
 
